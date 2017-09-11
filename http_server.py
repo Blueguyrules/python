@@ -1,6 +1,6 @@
 
 import datetime
-from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
 
 class MyHandler(BaseHTTPRequestHandler):
@@ -8,8 +8,8 @@ class MyHandler(BaseHTTPRequestHandler):
 		self.send_response(200)
 		self.send_header('content-type', 'text/html')
 		self.end_headers()
-		self.wfile.write('<p>current date: ' + str(datetime.datetime.now().date()) + '</p>\n')
-		self.wfile.write('<p>current time: ' + str(datetime.datetime.now().time()) + '</p>\n')
+		self.wfile.write(('<p>current date: ' + str(datetime.datetime.now().date()) + '</p>\n').encode("utf-8"))
+		self.wfile.write(('<p>current time: ' + str(datetime.datetime.now().time()) + '</p>\n').encode("utf-8"))
 		return
 
 def main():
